@@ -3,19 +3,29 @@
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
+
+const sharedConfig = {
+  client: 'sqlite3',
+  migrations: {directory: './migrations'},
+  seeds: {directory: './data/seeds'},
+  useNullAsDefault: true,
+  pool: {after: (conn, done) => conn.run('PRAGMA foreign_keys = ON', done)},
+}
+
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    ...sharedConfig,
     connection: {
-      filename: './dev.sqlite3'
+      filename: './data/recipes.db3'
+
     }
   },
 
   staging: {
     client: 'postgresql',
     connection: {
-      database: 'my_db',
+      database: 'recipes.db3',
       user:     'username',
       password: 'password'
     },
