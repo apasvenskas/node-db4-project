@@ -9,7 +9,7 @@ const sharedConfig = {
   migrations: {directory: './migrations'},
   seeds: {directory: './data/seeds'},
   useNullAsDefault: true,
-  pool: {after: (conn, done) => conn.run('PRAGMA foreign_keys = ON', done)},
+  pool: {afterCreate: (conn, done) => conn.run('PRAGMA foreign_keys = ON', done)},
 }
 
 module.exports = {
@@ -21,37 +21,11 @@ module.exports = {
 
     }
   },
-
-  staging: {
-    client: 'postgresql',
-    connection: {
-      database: 'recipes.db3',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
+  testing: {
+    ...sharedConfig,
+    connection: {filename: './data/recipes_test.db3'}
   },
-
   production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
+   
   }
-
 };
