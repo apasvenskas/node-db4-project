@@ -12,22 +12,7 @@ const ingredients = [
   { ingredient_name: "sugar", ingredient_unit: "grams" },
 ];
 
-const step_ingredients = [
-  //Pancakes
-  {step_id: 1, ingredient_id: 1, quantity: "1"},
-  {step_id: 1, ingredient_id: 2, quantity: "300"},
-  {step_id: 1, ingredient_id: 3, quantity: "100"},
-  //Waffles
-  {step_id: 5, ingredient_id: 3, quantity: "100"},
-  {step_id: 5, ingredient_id: 2, quantity: "300"},
-  {step_id: 5, ingredient_id: 1, quantity: "whole"},
-  {step_id: 5, ingredient_id: 5, quantity: "120"},
-  {step_id: 6, ingredient_id: 4, quantity: "250"},
-  //Muffin
-  {step_id: 9, ingredient_id: 1, quantity: "1"},
-  {step_id: 9, ingredient_id: 2, quantity: "250"},
-  {step_id: 9, ingredient_id: 3, quantity: "200"},
-]
+
 
 const steps = [
   //Pancakes
@@ -115,9 +100,26 @@ const steps = [
   },
 ];
 
+const step_ingredients = [
+  //Pancakes
+  {step_id: 1, ingredient_id: 1, quantity: "1"},
+  {step_id: 1, ingredient_id: 2, quantity: "300"},
+  {step_id: 1, ingredient_id: 3, quantity: "100"},
+  //Waffles
+  {step_id: 5, ingredient_id: 3, quantity: "100"},
+  {step_id: 5, ingredient_id: 2, quantity: "300"},
+  {step_id: 5, ingredient_id: 1, quantity: "whole"},
+  {step_id: 5, ingredient_id: 5, quantity: "120"},
+  {step_id: 6, ingredient_id: 4, quantity: "250"},
+  //Muffin
+  {step_id: 9, ingredient_id: 1, quantity: "1"},
+  {step_id: 9, ingredient_id: 2, quantity: "250"},
+  {step_id: 9, ingredient_id: 3, quantity: "200"},
+]
+
 exports.seed = async function (knex) {
   await knex("recipes").insert(recipes);
   await knex("ingredients").insert(ingredients);
-  await knex("step_ingredients").insert(step_ingredients);
   await knex("steps").insert(steps);
+  await knex("step_ingredients").insert(step_ingredients);
 };
